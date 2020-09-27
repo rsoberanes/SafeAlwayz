@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SafeAlwayz</string>
+    <string name="title_activity_logged_in_acitvity">LoggedInAcitvity</string>
+    <string name="tab_text_1">Appliances</string>
+    <string name="tab_text_2">Settings</string>
+    <string name="tab_text_3">Account</string>
+    <string name="title_activity_logged_in">loggedInActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
