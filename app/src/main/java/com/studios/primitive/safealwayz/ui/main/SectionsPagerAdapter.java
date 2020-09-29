@@ -34,10 +34,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             return AppliancesFragment.newInstance(position+1);
         }
         else if(position == 1){
-            return PlaceholderFragment.newInstance(position+1);
+            return SettingsFragment.newInstance(position+1);
         }
         else{
-            return PlaceholderFragment.newInstance(position+1);
+            return AccountFragment.newInstance(position+1);
         }
     }
 
