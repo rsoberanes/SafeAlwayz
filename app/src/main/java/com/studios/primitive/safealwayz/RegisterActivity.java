@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.studios.primitive.safealwayz.ui.main.AccountModel;
+
 public class RegisterActivity extends AppCompatActivity {
 
     String username, email, password;
@@ -34,6 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
                 username = usernameInput.getText().toString();
                 email = emailInput.getText().toString();
                 password = passwordInput.getText().toString();
+                AccountModel newAccount = new AccountModel(username, password, email);
+                newAccount.toString();
                 //do something with these
                 startActivity(new Intent(RegisterActivity.this, MainActivity.class));
             }
