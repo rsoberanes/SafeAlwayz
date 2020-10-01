@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.studios.primitive.safealwayz.ui.main.AccountModel;
+import com.studios.primitive.safealwayz.ui.main.DatabaseHelper;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -37,8 +39,11 @@ public class RegisterActivity extends AppCompatActivity {
                 email = emailInput.getText().toString();
                 password = passwordInput.getText().toString();
                 AccountModel newAccount = new AccountModel(username, password, email);
-                newAccount.toString();
+                DatabaseHelper databaseHelper = new DatabaseHelper(RegisterActivity.this);
+
                 //do something with these
+
+                databaseHelper.addOne(newAccount);
                 startActivity(new Intent(RegisterActivity.this, MainActivity.class));
             }
         });
