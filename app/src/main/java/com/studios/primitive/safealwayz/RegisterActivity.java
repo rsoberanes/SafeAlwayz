@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 //do something with these
 
-                databaseHelper.addOne(newAccount);
+                databaseHelper.addAccount(newAccount);
                 startActivity(new Intent(RegisterActivity.this, MainActivity.class));
             }
         });

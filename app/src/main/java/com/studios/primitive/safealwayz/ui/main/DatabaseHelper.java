@@ -2,10 +2,14 @@ package com.studios.primitive.safealwayz.ui.main;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -21,7 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableStatement = "CREATE TABLE " + ACCOUNTS + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_USERNAME + " TEXT, " + COLUMN_PASSWORD + " TEXT, " + COLUMN_EMAIL + " TEXT)";
+        String createTableStatement = "CREATE TABLE " + ACCOUNTS + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_USERNAME + " TEXT UNIQUE, " + COLUMN_PASSWORD + " TEXT, " + COLUMN_EMAIL + " TEXT)";
         db.execSQL(createTableStatement);
     }
 
@@ -29,7 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-    public boolean addOne(AccountModel accountModel){
+    public boolean addAccount(AccountModel accountModel){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_USERNAME, accountModel.getUserName());
@@ -42,5 +46,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
         }
 
+    }
+    public List<AccountModel> getAllAccounts(){
+        List<AccountModel> rtnList = new ArrayList<>();
+        String queryCommand = "SELECT * FROM " + ACCOUNTS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(queryCommand,null);
+        if(cursor.moveToFirst()){
+            do{
+                int accID = cursor.getInt(0);
+                String accUsername = cursor.getString(1);
+                String accPassword = cursor.getString(2);
+                String accEmail = cursor.getString(3);
+
+                AccountModel newAcc = new AccountModel(accUsername,accPassword,accEmail);
+                newAcc.setId(accID);
+                rtnList.add(newAcc);
+
+            }while(cursor.moveToNext());
+        }else{
+            //returns an empty list
+        }
+        cursor.close();
+        db.close();
+        return rtnList;
     }
 }

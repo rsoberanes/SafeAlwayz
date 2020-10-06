@@ -2,11 +2,18 @@ package com.studios.primitive.safealwayz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.accounts.Account;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.studios.primitive.safealwayz.ui.main.AccountModel;
+import com.studios.primitive.safealwayz.ui.main.DatabaseHelper;
+import com.studios.primitive.safealwayz.ui.main.Login;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
                 email = emailInput.getText().toString();
                 password = passwordInput.getText().toString();
                 //handle these before going to next activity
+                DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
+                List<AccountModel> acc = databaseHelper.getAllAccounts();
+                Login loginAttempt = new Login(acc);
+
                 startActivity(new Intent(MainActivity.this, LoggedInActivity.class));
             }
         });
