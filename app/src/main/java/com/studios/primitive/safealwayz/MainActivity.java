@@ -43,7 +43,13 @@ public class MainActivity extends AppCompatActivity {
                 List<AccountModel> acc = databaseHelper.getAllAccounts();
                 Login loginAttempt = new Login(acc);
 
-                startActivity(new Intent(MainActivity.this, LoggedInActivity.class));
+                if(loginAttempt.isValidated(email, password)){
+                    startActivity(new Intent(MainActivity.this, LoggedInActivity.class));
+                }else{
+                    //error message
+                }
+
+
             }
         });
 
