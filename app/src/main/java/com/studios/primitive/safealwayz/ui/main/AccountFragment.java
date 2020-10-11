@@ -41,6 +41,7 @@ public class AccountFragment extends Fragment {
     TextView userID;
     TextView userName;
     TextView email;
+    Button delete;
 
     /*
     public AccountFragment() {
@@ -93,6 +94,15 @@ public class AccountFragment extends Fragment {
         userID = (TextView) v.findViewById(R.id.user_id);
         userName = (TextView) v.findViewById(R.id.user_username);
         email = (TextView) v.findViewById(R.id.user_email);
+        delete = (Button) v.findViewById(R.id.delete_account_button);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), ConfirmDeleteActivity.class);
+                startActivity(in);
+            }
+        });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
