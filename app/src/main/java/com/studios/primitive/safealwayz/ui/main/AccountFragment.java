@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.studios.primitive.safealwayz.MainActivity;
 import com.studios.primitive.safealwayz.R;
@@ -36,6 +38,10 @@ public class AccountFragment extends Fragment {
     private PageViewModel pageViewModel;
 
     Button logout;
+    TextView userID;
+    TextView userName;
+    TextView email;
+    Button delete;
 
     /*
     public AccountFragment() {
@@ -85,6 +91,19 @@ public class AccountFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_account, container, false);
         logout = (Button) v.findViewById(R.id.logout_button);
+        userID = (TextView) v.findViewById(R.id.user_id);
+        userName = (TextView) v.findViewById(R.id.user_username);
+        email = (TextView) v.findViewById(R.id.user_email);
+        delete = (Button) v.findViewById(R.id.delete_account_button);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), ConfirmDeleteActivity.class);
+                startActivity(in);
+            }
+        });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

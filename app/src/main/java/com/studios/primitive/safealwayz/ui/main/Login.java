@@ -1,5 +1,9 @@
 package com.studios.primitive.safealwayz.ui.main;
 
+import android.widget.Toast;
+
+import com.studios.primitive.safealwayz.MainActivity;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,12 +18,11 @@ public class Login {
             login.put(account.getEmail(),account.getPassword());
         }
 
-
     }
     public Boolean isValidated(String email, String password){
         boolean valid = false;
         if(login.containsKey(email)){
-            if(login.get(email) == password){
+            if(login.get(email).equals(password)){
                 valid = true;
             }
         }else{

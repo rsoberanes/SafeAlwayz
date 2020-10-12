@@ -1,5 +1,6 @@
 package com.studios.primitive.safealwayz.ui.main;
 
+import android.accounts.Account;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -71,4 +72,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return rtnList;
     }
+    public boolean deleteAccount(String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryCommand = "DELETE FROM "+ ACCOUNTS + " WHERE " + COLUMN_EMAIL + " = " + email;
+        Cursor cursor = db.rawQuery(queryCommand, null);
+        if(cursor.moveToFirst()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
 }

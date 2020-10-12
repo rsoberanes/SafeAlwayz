@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.studios.primitive.safealwayz.ui.main.AccountModel;
 import com.studios.primitive.safealwayz.ui.main.DatabaseHelper;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
                 List<AccountModel> acc = databaseHelper.getAllAccounts();
                 Login loginAttempt = new Login(acc);
+
 
                 if(loginAttempt.isValidated(email, password)){
                     startActivity(new Intent(MainActivity.this, LoggedInActivity.class));
