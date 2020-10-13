@@ -99,7 +99,7 @@ public class AccountFragment extends Fragment {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(getActivity(), ConfirmDeleteActivity.class);
+                Intent in = new Intent(getActivity(), DeleteConfirmActivity.class);
                 startActivity(in);
             }
         });
