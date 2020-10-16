@@ -1,6 +1,8 @@
 package com.studios.primitive.safealwayz.ui.main;
 
-public class AccountModel {
+import java.io.Serializable;
+
+public class AccountModel implements Serializable {
     private String userName;
     private String password;
     private String email;
@@ -36,6 +38,7 @@ public class AccountModel {
 
 
     //Getter and Setters
+
 
     public String getUserName() {
         return userName;

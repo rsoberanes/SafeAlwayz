@@ -72,6 +72,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return rtnList;
     }
+    public AccountModel getAccount(String email, String password){
+        AccountModel account = new AccountModel();
+            SQLiteDatabase db = this.getReadableDatabase();
+            String queryCommand = "SELECT * FROM " + ACCOUNTS + " WHERE "+ COLUMN_EMAIL + " = "+ "'" + email +"'";
+            Cursor cursor = db.rawQuery(queryCommand,null);
+            if(cursor.moveToFirst()){
+                do{
+                    int accID = cursor.getInt(0);
+                    String accUsername = cursor.getString(1);
+                    String accPassword = cursor.getString(2);
+                    String accEmail = cursor.getString(3);
+
+                    account.setId(accID);
+                    account.setUserName(accUsername);
+                    account.setPassword(accPassword);
+                    account.setEmail(accEmail);
+                }while(cursor.moveToNext());
+            }else{
+                //returns an empty list
+            }
+            cursor.close();
+            db.close();
+
+        return account;
+
+    }
     public boolean deleteAccount(String email){
         SQLiteDatabase db = this.getWritableDatabase();
         String queryCommand = "DELETE FROM "+ ACCOUNTS + " WHERE " + COLUMN_EMAIL + " = " + email;

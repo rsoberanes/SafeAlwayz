@@ -61,6 +61,7 @@ public class AccountFragment extends Fragment {
         AccountFragment fragment = new AccountFragment();
         Bundle args = new Bundle();
         Bundle bundle = new Bundle();
+        
         bundle.putInt(ARG_SECTION_NUMBER, index);
         fragment.setArguments(bundle);
         return fragment;
@@ -89,12 +90,17 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        AccountModel model = (AccountModel) getActivity().getIntent().getSerializableExtra("obj");
         View v = inflater.inflate(R.layout.fragment_account, container, false);
         logout = (Button) v.findViewById(R.id.logout_button);
         userID = (TextView) v.findViewById(R.id.user_id);
         userName = (TextView) v.findViewById(R.id.user_username);
         email = (TextView) v.findViewById(R.id.user_email);
         delete = (Button) v.findViewById(R.id.delete_account_button);
+
+        userID.setText("User ID Number: "+ model.getId());
+        userName.setText("Username: "+ model.getUserName());
+        email.setText("Email: "+ model.getEmail());
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,4 +119,5 @@ public class AccountFragment extends Fragment {
         });
         return v;
     }
+
 }
