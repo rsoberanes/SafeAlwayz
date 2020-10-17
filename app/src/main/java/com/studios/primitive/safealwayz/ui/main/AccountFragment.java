@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.studios.primitive.safealwayz.MainActivity;
 import com.studios.primitive.safealwayz.R;
 
+import java.io.Serializable;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AccountFragment#newInstance} factory method to
@@ -42,6 +44,7 @@ public class AccountFragment extends Fragment {
     TextView userName;
     TextView email;
     Button delete;
+    Button cancel;
 
     /*
     public AccountFragment() {
@@ -90,17 +93,28 @@ public class AccountFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        AccountModel model = (AccountModel) getActivity().getIntent().getSerializableExtra("obj");
+        final AccountModel model = (AccountModel) getActivity().getIntent().getSerializableExtra("obj");
         View v = inflater.inflate(R.layout.fragment_account, container, false);
         logout = (Button) v.findViewById(R.id.logout_button);
         userID = (TextView) v.findViewById(R.id.user_id);
         userName = (TextView) v.findViewById(R.id.user_username);
         email = (TextView) v.findViewById(R.id.user_email);
         delete = (Button) v.findViewById(R.id.delete_account_button);
+        cancel = (Button) v.findViewById(R.id.cancel_delete);
 
         userID.setText("User ID Number: "+ model.getId());
         userName.setText("Username: "+ model.getUserName());
         email.setText("Email: "+ model.getEmail());
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(),AccountFragment.class);
+                in.putExtra("obj", (Serializable) model);
+                startActivity(in);
+
+            }
+        });
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
