@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.accounts.Account;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import com.studios.primitive.safealwayz.ui.main.AccountModel;
 import com.studios.primitive.safealwayz.ui.main.DatabaseHelper;
 import com.studios.primitive.safealwayz.ui.main.Login;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,7 +48,12 @@ public class MainActivity extends AppCompatActivity {
 
 
                 if(loginAttempt.isValidated(email, password)){
-                    startActivity(new Intent(MainActivity.this, LoggedInActivity.class));
+                    AccountModel account = databaseHelper.getAccount(email,password);
+                    Intent intent = new Intent(MainActivity.this, LoggedInActivity.class);
+                    intent.putExtra("obj", (Serializable) account);
+                    startActivity(intent);
+
+
                 }else{
                     //error message
                 }
