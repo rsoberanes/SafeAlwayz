@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.studios.primitive.safealwayz.ui.main.Account.AccountModel;
+
+import java.io.Serializable;
+
 public class AddDeviceActivity extends AppCompatActivity {
 
     Button addCCTV;
@@ -20,7 +24,10 @@ public class AddDeviceActivity extends AppCompatActivity {
         addCCTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AddDeviceActivity.this, AddCameraActivity.class));
+                final AccountModel model = (AccountModel) getIntent().getSerializableExtra("obj");
+                Intent intent = new Intent(AddDeviceActivity.this, AddCameraActivity.class);
+                intent.putExtra("obj", (Serializable) model);
+                startActivity(intent);
             }
         });
 

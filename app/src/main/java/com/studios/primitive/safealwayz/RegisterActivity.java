@@ -39,11 +39,9 @@ public class RegisterActivity extends AppCompatActivity {
                 password = passwordInput.getText().toString();
                 AccountModel newAccount = new AccountModel(username, password, email);
                 DatabaseHelper databaseHelper = new DatabaseHelper(RegisterActivity.this);
-
-                //do something with these
-
                 databaseHelper.addAccount(newAccount);
                 startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                finish();
             }
         });
 
@@ -52,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                finish();
             }
         });
 

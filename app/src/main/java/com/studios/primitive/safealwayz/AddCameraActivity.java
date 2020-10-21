@@ -13,6 +13,8 @@ import android.widget.EditText;
 
 
 import com.google.android.material.tabs.TabLayout;
+import com.studios.primitive.safealwayz.ui.main.Account.AccountModel;
+import com.studios.primitive.safealwayz.ui.main.Account.DatabaseHelper;
 import com.studios.primitive.safealwayz.ui.main.CCTV.CCTVModel;
 import com.studios.primitive.safealwayz.ui.main.CCTV.DBCCTV;
 import com.studios.primitive.safealwayz.ui.main.Fragments.AppliancesFragment;
@@ -22,6 +24,7 @@ import com.studios.primitive.safealwayz.ui.main.Fragments.SettingsFragment;
 public class AddCameraActivity extends AppCompatActivity {
 
     String name;
+    int accountId;
     EditText nameInput;
 
     Button addCameraButton;
@@ -38,11 +41,13 @@ public class AddCameraActivity extends AppCompatActivity {
         addCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AccountModel model = (AccountModel) getIntent().getSerializableExtra("obj");
+                accountId = model.getId();
                 name = nameInput.getText().toString();
-                CCTVModel newCamera = new CCTVModel(name);
+                CCTVModel newCamera = new CCTVModel(accountId, name);
                 DBCCTV dbcctv = new DBCCTV(AddCameraActivity.this);
                 dbcctv.addCamera(newCamera);
-
+                finish();
             }
         });
 
@@ -50,7 +55,7 @@ public class AddCameraActivity extends AppCompatActivity {
         cancelAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(AddCameraActivity.this, LoggedInActivity.class));
+                finish();
             }
         });
 

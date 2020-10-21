@@ -15,6 +15,7 @@ public class DBCCTV extends SQLiteOpenHelper {
 
     public static final String CAMERAS = "CAMERAS";
     public static final String COLUMN_ID = "ID";
+    public static final String ACCOUNT_ID = "ACCOUNT_ID";
     public static final String COLUMN_NAME = "NAME";
 
     public DBCCTV(@Nullable Context context) {
@@ -23,7 +24,7 @@ public class DBCCTV extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableStatement = "CREATE TABLE " + CAMERAS + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT UNIQUE)";
+        String createTableStatement = "CREATE TABLE " + CAMERAS + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + ACCOUNT_ID + " INTEGER, " + COLUMN_NAME + " TEXT UNIQUE)";
         db.execSQL(createTableStatement);
     }
 
@@ -35,6 +36,7 @@ public class DBCCTV extends SQLiteOpenHelper {
     public boolean addCamera(CCTVModel cctvModel){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
+        cv.put(ACCOUNT_ID, cctvModel.getAccountId());
         cv.put(COLUMN_NAME, cctvModel.getCameraName());
         long insert = db.insert(CAMERAS, null, cv);
         if(insert == -1){
@@ -52,9 +54,11 @@ public class DBCCTV extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             do{
                 int cameraID = cursor.getInt(0);
-                String cameraName = cursor.getString(1);
+                int accountID = cursor.getInt(1);
+                String cameraName = cursor.getString(2);
 
-                CCTVModel newCamera = new CCTVModel(cameraName);
+
+                CCTVModel newCamera = new CCTVModel(accountID, cameraName);
                 newCamera.setId(cameraID);
                 rtnList.add(newCamera);
 
@@ -75,9 +79,11 @@ public class DBCCTV extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             do{
                 int cameraID = cursor.getInt(0);
-                String cameraName = cursor.getString(1);
+                int accountID = cursor.getInt(1);
+                String cameraName = cursor.getString(2);
 
                 camera.setId(cameraID);
+                camera.setAccountId(accountID);
                 camera.setCameraName(cameraName);
             }while(cursor.moveToNext());
         }else{

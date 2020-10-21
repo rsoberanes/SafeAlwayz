@@ -1,13 +1,17 @@
 package com.studios.primitive.safealwayz.ui.main.CCTV;
 
-public class CCTVModel {
+import java.io.Serializable;
+
+public class CCTVModel implements Serializable{
 
     //variables
     private int id;
+    private int accountId;
     private String cameraName;
 
     //Constructor
-    public CCTVModel(String cameraName) {
+    public CCTVModel(int accountId, String cameraName) {
+        this.accountId = accountId;
         this.cameraName = cameraName;
         this.id = id;
     }
@@ -20,6 +24,7 @@ public class CCTVModel {
     @Override
     public String toString() {
         return "AccountModel{" +
+                "accountId='" + accountId + '\'' +
                 "userName='" + cameraName + '\'' +
                 '}';
     }
@@ -27,6 +32,13 @@ public class CCTVModel {
 
     //Getter and Setters
 
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
+    }
 
     public String getCameraName() {
         return cameraName;
