@@ -1,4 +1,4 @@
-package com.studios.primitive.safealwayz.ui.main;
+package com.studios.primitive.safealwayz.ui.main.Fragments;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;

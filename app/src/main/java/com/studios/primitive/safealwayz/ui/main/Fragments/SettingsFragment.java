@@ -1,5 +1,6 @@
-package com.studios.primitive.safealwayz.ui.main;
+package com.studios.primitive.safealwayz.ui.main.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,8 +9,14 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.studios.primitive.safealwayz.AddDeviceActivity;
+import com.studios.primitive.safealwayz.MainActivity;
 import com.studios.primitive.safealwayz.R;
+import com.studios.primitive.safealwayz.ui.main.Account.AccountModel;
+
+import java.io.Serializable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +36,10 @@ public class SettingsFragment extends Fragment {
     private String mParam2;
 
     private PageViewModel pageViewModel;
+
+    Button add;
+    Button remove;
+    Button configure;
 
     /*
     public SettingsFragment() {
@@ -75,6 +86,38 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        final AccountModel model = (AccountModel) getActivity().getIntent().getSerializableExtra("obj");
+        View v = inflater.inflate(R.layout.fragment_settings, container, false);
+        add = (Button) v.findViewById(R.id.add_button);
+        remove = (Button) v.findViewById(R.id.remove_button);
+        configure = (Button) v.findViewById(R.id.configure_button);
+
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getActivity(), AddDeviceActivity.class);
+                in.putExtra("obj", (Serializable) model);
+                startActivity(in);
+            }
+        });
+
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getActivity(), MainActivity.class);
+                startActivity(in);
+            }
+        });
+
+        configure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getActivity(), MainActivity.class);
+                startActivity(in);
+            }
+        });
+
+        return v;
     }
 }

@@ -2,18 +2,15 @@ package com.studios.primitive.safealwayz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.accounts.Account;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.studios.primitive.safealwayz.ui.main.AccountModel;
-import com.studios.primitive.safealwayz.ui.main.DatabaseHelper;
-import com.studios.primitive.safealwayz.ui.main.Login;
+import com.studios.primitive.safealwayz.ui.main.Account.AccountModel;
+import com.studios.primitive.safealwayz.ui.main.Account.DatabaseHelper;
+import com.studios.primitive.safealwayz.ui.main.Account.Login;
 
 import java.io.Serializable;
 import java.util.List;

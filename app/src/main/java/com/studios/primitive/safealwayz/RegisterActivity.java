@@ -6,12 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.studios.primitive.safealwayz.ui.main.AccountModel;
-import com.studios.primitive.safealwayz.ui.main.DatabaseHelper;
+import com.studios.primitive.safealwayz.ui.main.Account.AccountModel;
+import com.studios.primitive.safealwayz.ui.main.Account.DatabaseHelper;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -21,6 +19,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText emailInput;
 
     Button createAccount;
+    Button cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +39,18 @@ public class RegisterActivity extends AppCompatActivity {
                 password = passwordInput.getText().toString();
                 AccountModel newAccount = new AccountModel(username, password, email);
                 DatabaseHelper databaseHelper = new DatabaseHelper(RegisterActivity.this);
-
-                //do something with these
-
                 databaseHelper.addAccount(newAccount);
                 startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                finish();
+            }
+        });
+
+        cancel = (Button) findViewById(R.id.cancel_register);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                finish();
             }
         });
 

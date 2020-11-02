@@ -1,4 +1,4 @@
-package com.studios.primitive.safealwayz.ui.main;
+package com.studios.primitive.safealwayz.ui.main.Fragments;
 
 
 
@@ -12,11 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
+import com.studios.primitive.safealwayz.ui.main.Account.AccountModel;
 import com.studios.primitive.safealwayz.MainActivity;
 import com.studios.primitive.safealwayz.R;
+import com.studios.primitive.safealwayz.ui.main.DeleteConfirmActivity;
 
 /**
  * A simple {@link Fragment} subclass.
