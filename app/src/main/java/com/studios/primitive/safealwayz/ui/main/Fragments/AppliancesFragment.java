@@ -1,4 +1,4 @@
-package com.studios.primitive.safealwayz.ui.main;
+package com.studios.primitive.safealwayz.ui.main.Fragments;
 
 import android.os.Bundle;
 
@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.studios.primitive.safealwayz.R;
 

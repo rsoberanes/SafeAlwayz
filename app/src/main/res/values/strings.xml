@@ -11,4 +11,6 @@
     <string name="Password">Password</string>
     <string name="Confirm">Confirm</string>
     <string name="Cancel">Cancel</string>
+    <string name="device_id">Device ID</string>
+    <string name="verify">Verify</string>
 </resources>

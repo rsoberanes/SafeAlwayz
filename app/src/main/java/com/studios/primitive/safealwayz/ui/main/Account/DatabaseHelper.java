@@ -1,6 +1,5 @@
-package com.studios.primitive.safealwayz.ui.main;
+package com.studios.primitive.safealwayz.ui.main.Account;
 
-import android.accounts.Account;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

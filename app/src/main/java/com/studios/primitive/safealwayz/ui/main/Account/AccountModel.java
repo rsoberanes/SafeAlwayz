@@ -1,4 +1,4 @@
-package com.studios.primitive.safealwayz.ui.main;
+package com.studios.primitive.safealwayz.ui.main.Account;
 
 import java.io.Serializable;
 

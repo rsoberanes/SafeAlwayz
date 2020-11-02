@@ -1,8 +1,4 @@
-package com.studios.primitive.safealwayz.ui.main;
-
-import android.widget.Toast;
-
-import com.studios.primitive.safealwayz.MainActivity;
+package com.studios.primitive.safealwayz.ui.main.Account;
 
 import java.util.HashMap;
 import java.util.List;
