@@ -14,6 +14,7 @@ import java.io.Serializable;
 public class AddDeviceActivity extends AppCompatActivity {
 
     Button addCCTV;
+    Button addLight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,17 @@ public class AddDeviceActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        addLight = (Button) findViewById(R.id.add_lights);
+        addLight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final AccountModel model = (AccountModel) getIntent().getSerializableExtra("obj");
+                Intent intent = new Intent(AddDeviceActivity.this, AddLightActivity.class);
+                intent.putExtra("obj", (Serializable) model);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }
