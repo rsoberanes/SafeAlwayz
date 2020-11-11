@@ -42,11 +42,7 @@ public class LightDatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_LOCATION, light.getLocation());
         cv.put(COLUMN_STATUS, light.isActive());
         long insert = db.insert(LIGHTS, null, cv);
-        if (insert == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return insert != -1;
 
     }
     public void changeLightStatus(LightModel light){
@@ -70,7 +66,7 @@ public class LightDatabaseHelper extends SQLiteOpenHelper {
                 int LightID = cursor.getInt(0);
                 String username = cursor.getString(1);
                 String lightLocation = cursor.getString(2);
-                boolean lightStatus = cursor.getInt(3) == 1? true: false;
+                boolean lightStatus = cursor.getInt(3) == 1;
                 LightModel newLight = new LightModel(lightLocation, account);
                 newLight.setActive(lightStatus);
                 newLight.setLightID(LightID);
@@ -85,22 +81,22 @@ public class LightDatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return rtnList;
     }
-    public LightModel getLight(String lightID, String username){
-        LightModel light = new LightModel(username);
+    public LightModel getLight(String id, String user){
+        LightModel light = new LightModel(user);
         SQLiteDatabase db = this.getReadableDatabase();
-        String queryCommand = "SELECT * FROM " + LIGHTS + " WHERE "+ COLUMN_LIGHTID + " = "+ "'" + lightID +"'";
+        String queryCommand = "SELECT * FROM " + LIGHTS + " WHERE "+ COLUMN_LIGHTID + " = "+ "'" + id +"'";
         Cursor cursor = db.rawQuery(queryCommand,null);
         if(cursor.moveToFirst()){
             do{
-                int lightNum = cursor.getInt(0);
-                String user = cursor.getString(1);
+                int LightID = cursor.getInt(0);
+                String username = cursor.getString(1);
                 String location = cursor.getString(2);
-                boolean status = cursor.getInt(3) == 1 ? true: false;
+                boolean status = cursor.getInt(3) == 1? true: false;
 
-                light.setActive(status);
+                light.setLightID(LightID);
+                light.setUsername(username);
                 light.setLocation(location);
-                light.setLightID(lightNum);
-
+                light.setActive(status);
 
             }while(cursor.moveToNext());
         }else{
@@ -108,6 +104,7 @@ public class LightDatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
+
         return light;
 
     }

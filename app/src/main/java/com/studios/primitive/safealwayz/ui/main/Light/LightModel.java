@@ -9,7 +9,7 @@ public class LightModel {
     int timer;
     AccountModel account;
 
-    LightModel(String loc, AccountModel acc){
+    public LightModel(String loc, AccountModel acc){
         this.account = acc;
         this.location = loc;
         this.active = false;

@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddLightActivity"></activity>
+        <activity android:name=".AccountLightActivity"></activity>
+        <activity android:name=".AddLightActivity" />
         <activity android:name=".AddSmartFridgeActivity" />
         <activity android:name=".AddCameraActivity" />
         <activity android:name=".AddDeviceActivity" />

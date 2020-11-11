@@ -1,5 +1,6 @@
 package com.studios.primitive.safealwayz.ui.main.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,8 +9,14 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.studios.primitive.safealwayz.AccountLightActivity;
+import com.studios.primitive.safealwayz.AddDeviceActivity;
 import com.studios.primitive.safealwayz.R;
+import com.studios.primitive.safealwayz.ui.main.Account.AccountModel;
+
+import java.io.Serializable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +36,8 @@ public class AppliancesFragment extends Fragment {
     private String mParam2;
 
     private PageViewModel pageViewModel;
+
+    private Button lightButton;
 
     /*
     public AppliancesFragment() {
@@ -73,8 +82,21 @@ public class AppliancesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState
+    ) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_appliances, container, false);
+        final AccountModel model = (AccountModel) getActivity().getIntent().getSerializableExtra("obj");
+        View v = inflater.inflate(R.layout.fragment_appliances, container, false);
+        lightButton = (Button) v.findViewById(R.id.light_button);
+        lightButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(getActivity(), AccountLightActivity.class);
+                in.putExtra("obj", (Serializable) model);
+                startActivity(in);
+            }
+        });
+        return v;
+
     }
 }
